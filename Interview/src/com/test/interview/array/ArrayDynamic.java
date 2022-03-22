@@ -25,9 +25,19 @@ public class ArrayDynamic {
 		if(pointer>0) {
 			arr[pointer-1] = 0;
 			pointer--;
+			shrink();
 		}
 	}
 	
+	private void shrink() {
+		if(pointer <= (capacity/2)/2) {
+			capacity = capacity/2;
+			int[] tempArr = new int[capacity];
+			System.arraycopy(arr, 0, tempArr, 0, capacity);
+			arr = tempArr;
+		}
+	}
+
 	public void removeElementAt(int index) {
 		if(pointer>0) {
 			for (int i = index; i < pointer; i++) {
